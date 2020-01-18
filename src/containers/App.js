@@ -48,8 +48,6 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <Header />
-              <Link to="/new"><div>NEW PROJECT</div></Link>
-              <div>...</div>
               <ProjectList projects={this.state.projectData} />
             </header>
           </div>
