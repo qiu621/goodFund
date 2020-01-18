@@ -5,7 +5,6 @@ import Header from '../components/Header/Header';
 import ProjectList from '../components/ProjectList/ProjectList';
 import NewProject from './NewProject';
 import ProjectPage from './ProjectPage';
-import NavBar from './Nav/Nav.js'
 import {
   BrowserRouter as Router,
   Switch,
@@ -46,7 +45,14 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/">
-            <App />
+          <div className="App">
+            <header className="App-header">
+              <Header />
+              <Link to="/new"><div>NEW PROJECT</div></Link>
+              <div>...</div>
+              <ProjectList projects={this.state.projectData} />
+            </header>
+          </div>
           </Route>
           <Route path="/new">
             <NewProject />
@@ -55,16 +61,7 @@ class App extends Component {
             <ProjectPost />
           </Route>
         </Switch>
-      </Router>
-
-      // <div className="App">
-      //   <header className="App-header">
-      //     <Header />
-      //     <Link to="/new"><div>NEW PROJECT</div></Link>
-      //     <div>...</div>
-      //     <ProjectList projects={this.state.projectData} />
-      //   </header>
-      // </div>
+      </Router>      
     );
   }
 }
