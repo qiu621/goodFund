@@ -39,41 +39,56 @@ class App extends Component {
   }
 
   getProjects() {
+    let projectList = [];
     crowdfundInstance.methods.returnAllProjects().call().then((projects) => {
       projects.forEach((projectAddress) => {
         const projectInst = crowdfundProject(projectAddress);
         projectInst.methods.getDetails().call().then((projectData) => {
           const projectInfo = projectData;
-          projectInfo.isLoading = false;
           projectInfo.contract = projectInst;
-          this.state.projectData.push(projectInfo);
-          this.setState({ projectData: this.state.projectData });
+          projectList.push(projectInfo);
+          this.setState({ projectData: projectList });
         });
       });
     });
   }
 
-  startProject() {
-    this.state.newProject.isLoading = true;
+  startProject(newProject, account) {
     crowdfundInstance.methods.startProject(
-      'PROJECT ZOU',
-      'CREATE SUPER HUMAN',
-      '52',
-      web3.utils.toWei('1', 'ether'),
+      newProject.project_title,
+      newProject.project_description,
+      newProject.project_deadline,
+      web3.utils.toWei(newProject.project_goal, 'ether')
     ).send({
-      from: this.state.account,
+      from: account,
     }).then((res) => {
       const projectInfo = res.events.ProjectStarted.returnValues;
-      projectInfo.isLoading = false;
       projectInfo.currentAmount = 0;
-      projectInfo.currentState = 0;
       projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
-      this.startProjectDialog = false;
-      this.state.newProject = { isLoading: false };
-      console.log('orgasm')
     });
   }
 
+  fundProject(index, amount) {
+    const projectContract = this.state.projectData[index].contract;
+    projectContract.methods.pledge(amount).send({
+      from: this.state.account,
+      value: web3.utils.toWei(amount, 'ether'),
+    }).then((res) => {
+      const newTotal = parseInt(res.events.newPledge.returnValues.total_raised, 10);
+      const projectGoal = parseInt(this.state.projectData[index].goal, 10);
+      this.state.projectData[index].currentAmount = newTotal;
+      // if (newTotal >= projectGoal) {
+      //   this.state.projectData[index].currentState = 2;
+      // }
+      this.forceUpdate()
+    });
+  }
+
+  getRefund(index) {
+    this.projectData[index].contract.methods.getRefund().send({
+      from: this.account,
+    });
+  }
 
   render () {
     return (
