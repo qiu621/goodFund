@@ -104,21 +104,7 @@ class ProjectForm extends React.Component {
 
           <Form.Group as={Row} controlId="project_deadline">
             <Form.Label column sm="2">
-              Project Milestone 1
-            </Form.Label>
-            <Col sm="11">
-            <input
-               type="text"
-               name="project_deadline"
-               placeholder=""
-               onChange={this.handleFormChange}
-            />
-          </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} controlId="project_deadline">
-            <Form.Label column sm="2">
-              Project Milestone 2
+              Funding Deadline
             </Form.Label>
             <Col sm="11">
             <input
