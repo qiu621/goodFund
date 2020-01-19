@@ -8,11 +8,11 @@ class ProjectPage extends React.Component {
         this.state = {
             amount: 0
         };
-  
+
         this.handleFormChange = this.handleFormChange.bind(this);
         this.handleButtonSubmit = this.handleButtonSubmit.bind(this);
     }
-  
+
     handleFormChange(event) {
         const target = event.target; // i.e. the whole <input type="text" name="Describe your project" placeholder="" onChange={this.handleFormChange} />
         const name = target.name;
@@ -34,7 +34,7 @@ class ProjectPage extends React.Component {
         return (
             <Jumbotron>
                 <h1>{ this.props.project.project_title }</h1>
-                
+
                 <Form>
                   <Col sm="10">
                   <input
@@ -52,6 +52,7 @@ class ProjectPage extends React.Component {
         );
     }
 }
+
 
 
 export default ProjectPage;

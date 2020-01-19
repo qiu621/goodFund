@@ -11,7 +11,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams
+  useParams,
+  Link
 } from "react-router-dom";
 
 import crowdfundInstance from '../blockchain/crowdfundInstance';
@@ -93,10 +94,11 @@ class App extends Component {
         <Switch>
           <Route exact path="/">
           <div className="App">
-            <Container>
-              <Header />
+          <Header />
+              <Container style={{marginTop: "5vh"}}>
+              <h2 style={{marginBottom: "5vh"}}>Featured Good Projects</h2>
               <ProjectList projects={this.state.projectData} />
-            </Container>
+              </Container>
           </div>
           </Route>
           <Route path="/new">
