@@ -14,7 +14,7 @@ const ProjectDisplay = ( project ) => {
 					<p class="card-text">Save eagles in the environment while drinking water.</p>
 				</div>
 				<div class="card-footer">
-          <Link to={"/" + project._project_title}>This is a Project called {project._project_title}!!</Link>				
+          <Link to={"/" + project._ID}>This is a Project called {project._project_title}!!</Link>				
 			</div>
 		</div>
   </div>

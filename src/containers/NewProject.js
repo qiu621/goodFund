@@ -12,7 +12,7 @@ class NewProject extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        title: ''
+        
       };
   
       this.handleChange = this.handleChange.bind(this);
@@ -20,12 +20,14 @@ class NewProject extends React.Component {
     }
     handleChange(event) {
       let value = event.target.value;
-  
+      console.log("EVENT");
+      console.log(event);
       this.setState({ title: value });
     }
     handleSubmit(event) {
       event.preventDefault();
-  
+
+      console.log(event);
       this.props.onSubmit(this.state.title);
     }
     render() {

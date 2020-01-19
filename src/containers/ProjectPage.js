@@ -4,12 +4,10 @@ import Button from 'react-bootstrap/Button';
 
 
 const ProjectPage = ( project ) => {
+    project = project.project;
     return (    
         <Jumbotron>
-            <h1>The Eagle</h1>
-            <p>
-                
-            </p>
+            <h1>{ project._project_title }</h1>
             <p>
                 <Button variant="primary">Learn more</Button>
             </p>
