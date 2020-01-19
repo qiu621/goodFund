@@ -30,17 +30,15 @@ contract Crowdfunding {
 }
 
 contract Project {
-    enum Status {Unsuccessful, Successful, Ongoing}
-
     address payable public project_creator;
     string public project_title;
     string public project_description;
     uint256 public deadline;
     uint256 public goal;
     uint256 public project_ID;
-    Status public status;
+    uint256 public status;
     mapping(address => uint256) public addressToPledgeAmount;
-    event newPledge(address contributor, uint amount, uint amount_raised);
+    event newPledge(address contributor, uint amount, uint total_raised);
     event CreatorPaid(address creator);
     event peopleRefunded(uint amonut_to_refund);
 
@@ -50,7 +48,7 @@ contract Project {
         project_description = description;
         deadline = _deadline; // solium-disable-line
         goal = _goal;
-        status = Status.Ongoing;
+        status = 0;
         project_ID = _ID;
     }
 
@@ -60,13 +58,13 @@ contract Project {
 
     function updateStatus() public {
         if (now > deadline && getTotalRaised() > goal) { // solium-disable-line
-            status = Status.Successful;
+            status = 2;
         } else if (now > deadline && getTotalRaised() < goal) { // solium-disable-line
-            status = Status.Unsuccessful;
+            status = 1;
         }
     }
 
-    function getStatus() public returns (Status) {
+    function getStatus() public returns (uint256) {
         updateStatus();
         return status;
     }
@@ -99,7 +97,9 @@ contract Project {
     }
 
     function getDetails() public returns
-        (address payable , string memory , string memory, uint256, uint256, uint256, Status, uint256) {
-        return (project_creator, project_title, project_description, deadline, getTotalRaised(), goal, getStatus(), project_ID);
+        (address payable , string memory , string memory, uint256, uint256, uint256, uint256, uint256) {
+            uint256 totalRaised = getTotalRaised();
+            status = getStatus();
+        return (project_creator, project_title, project_description, deadline, totalRaised, goal, status, project_ID);
         }
     }

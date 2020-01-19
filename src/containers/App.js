@@ -45,7 +45,6 @@ class App extends Component {
         const projectInst = crowdfundProject(projectAddress);
         projectInst.methods.getDetails().call().then((projectData) => {
           const projectInfo = projectData;
-          projectInfo.isLoading = false;
           projectInfo.contract = projectInst;
           projectList.push(projectInfo);
           this.setState({ projectData: projectList });
@@ -55,51 +54,39 @@ class App extends Component {
   }
 
   startProject(newProject, account) {
-    newProject.isLoading = true;
     crowdfundInstance.methods.startProject(
-<<<<<<< Updated upstream
-      this.newProject.title,
-      this.newProject.description,
-      this.newProject.duration,
-      web3.utils.toWei(this.newProject.amountGoal, 'ether')
-=======
-      newProject.title,
-      newProject.description,
-      newProject.duration,
-      web3.utils.toWei('1', 'ether'),
->>>>>>> Stashed changes
+      newProject.project_title,
+      newProject.project_description,
+      newProject.project_deadline,
+      web3.utils.toWei(newProject.project_goal, 'ether')
     ).send({
       from: account,
     }).then((res) => {
       const projectInfo = res.events.ProjectStarted.returnValues;
-      projectInfo.isLoading = false;
       projectInfo.currentAmount = 0;
-      projectInfo.currentState = 0;
       projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
-<<<<<<< Updated upstream
-      this.startProjectDialog = false;
-      this.state.newProject = { isLoading: false };
     });
   }
 
-  fundProject(index) {
-    const projectContract = this.projectData[index].contract;
-    this.projectData[index].isLoading = true;
-    projectContract.methods.pledge().send({
+  fundProject(index, amount) {
+    const projectContract = this.state.projectData[index].contract;
+    projectContract.methods.pledge(amount).send({
       from: this.state.account,
-      value: web3.utils.toWei(this.projectData[index].fundAmount, 'ether'),
+      value: web3.utils.toWei(amount, 'ether'),
     }).then((res) => {
-      const newTotal = parseInt(res.events.FundingReceived.returnValues.currentTotal, 10);
-      const projectGoal = parseInt(this.projectData[index].goalAmount, 10);
-      this.projectData[index].currentAmount = newTotal;
-      this.projectData[index].isLoading = false;
-      // Set project state to success
-      if (newTotal >= projectGoal) {
-        this.projectData[index].currentState = 2;
-      }
-      this.setState({ projectData: this.state.projectData });
-=======
->>>>>>> Stashed changes
+      const newTotal = parseInt(res.events.newPledge.returnValues.total_raised, 10);
+      const projectGoal = parseInt(this.state.projectData[index].goal, 10);
+      this.state.projectData[index].currentAmount = newTotal;
+      // if (newTotal >= projectGoal) {
+      //   this.state.projectData[index].currentState = 2;
+      // }
+      this.forceUpdate()
+    });
+  }
+
+  getRefund(index) {
+    this.projectData[index].contract.methods.getRefund().send({
+      from: this.account,
     });
   }
 
