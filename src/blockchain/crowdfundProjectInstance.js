@@ -8,9 +8,9 @@ const abi = [
 		"name": "status",
 		"outputs": [
 			{
-				"internalType": "enum Project.Status",
+				"internalType": "uint256",
 				"name": "",
-				"type": "uint8"
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -107,9 +107,9 @@ const abi = [
 		"name": "getStatus",
 		"outputs": [
 			{
-				"internalType": "enum Project.Status",
+				"internalType": "uint256",
 				"name": "",
-				"type": "uint8"
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -207,42 +207,42 @@ const abi = [
 		"outputs": [
 			{
 				"internalType": "address payable",
-				"name": "_project_creator",
+				"name": "",
 				"type": "address"
 			},
 			{
 				"internalType": "string",
-				"name": "project_title",
+				"name": "",
 				"type": "string"
 			},
 			{
 				"internalType": "string",
-				"name": "_project_description",
+				"name": "",
 				"type": "string"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_deadline",
+				"name": "",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "total_raised",
+				"name": "",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_goal",
+				"name": "",
 				"type": "uint256"
 			},
 			{
-				"internalType": "enum Project.Status",
-				"name": "_status",
-				"type": "uint8"
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_ID",
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -305,7 +305,7 @@ const abi = [
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "amount_raised",
+				"name": "total_raised",
 				"type": "uint256"
 			}
 		],
