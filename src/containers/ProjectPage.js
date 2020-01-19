@@ -13,6 +13,6 @@ const ProjectPage = ( projectInfo ) => {
         </Jumbotron>
     );
 }
-  
+
 
 export default ProjectPage;
