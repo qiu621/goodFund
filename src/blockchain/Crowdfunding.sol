@@ -99,15 +99,7 @@ contract Project {
     }
 
     function getDetails() public returns
-        (address payable _project_creator, string memory _project_title, string memory _project_description, uint256 _deadline, uint256 total_raised,
-         uint256 _goal, Status _status, uint256 _ID) {
-        _project_creator = project_creator;
-        _project_title = project_title;
-        _project_description = project_description;
-        _deadline = deadline;
-        total_raised = getTotalRaised();
-        _goal = goal;
-        _status = getStatus();
-        _ID = project_ID;
+        (address payable , string memory , string memory, uint256, uint256, uint256, Status, uint256) {
+        return (project_creator, project_title, project_description, deadline, getTotalRaised(), goal, getStatus(), project_ID);
         }
     }

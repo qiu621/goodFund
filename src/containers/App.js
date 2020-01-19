@@ -56,10 +56,10 @@ class App extends Component {
   startProject() {
     this.state.newProject.isLoading = true;
     crowdfundInstance.methods.startProject(
-      'PROJECT ZOU',
-      'CREATE SUPER HUMAN',
-      '52',
-      web3.utils.toWei('1', 'ether'),
+      this.newProject.title,
+      this.newProject.description,
+      this.newProject.duration,
+      web3.utils.toWei(this.newProject.amountGoal, 'ether')
     ).send({
       from: this.state.account,
     }).then((res) => {
@@ -70,7 +70,25 @@ class App extends Component {
       projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
       this.startProjectDialog = false;
       this.state.newProject = { isLoading: false };
-      console.log('orgasm')
+    });
+  }
+
+  fundProject(index) {
+    const projectContract = this.projectData[index].contract;
+    this.projectData[index].isLoading = true;
+    projectContract.methods.pledge().send({
+      from: this.state.account,
+      value: web3.utils.toWei(this.projectData[index].fundAmount, 'ether'),
+    }).then((res) => {
+      const newTotal = parseInt(res.events.FundingReceived.returnValues.currentTotal, 10);
+      const projectGoal = parseInt(this.projectData[index].goalAmount, 10);
+      this.projectData[index].currentAmount = newTotal;
+      this.projectData[index].isLoading = false;
+      // Set project state to success
+      if (newTotal >= projectGoal) {
+        this.projectData[index].currentState = 2;
+      }
+      this.setState({ projectData: this.state.projectData });
     });
   }
 
