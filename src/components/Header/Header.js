@@ -26,8 +26,11 @@ function Header() {
       		<NavBar />
       		<div class="jumbotron" style={divStyle}>
           <div class="cover-container" style={coverContainer}>
-        			<h2 class="display-4">Crowdfunding for Good</h2>
-        			<p class="lead">There should be a concise yet strong description of our product inserted here but nope it's not here so just start browsing projects!</p>
+        			<h2 class="display-6">
+                The World's First Decentralized Crowdfunding Platform for Social Good
+              </h2>
+        			<p class="lead">Built on the Ethereum BlockChain, we protect backers and offer creators half the fees of traditional crowdfunding platforms.</p>
+
               <img src={video} alt="Card image cap" style={img}/>
             </div>
       		</div>

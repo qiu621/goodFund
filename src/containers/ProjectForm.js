@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Button, Jumbotron, Form, Row, Col } from 'react-bootstrap';
+import NavBar from '../components/Nav/Nav.js';
 
 class ProjectForm extends React.Component {
 
@@ -35,10 +36,13 @@ class ProjectForm extends React.Component {
     render() {
       return (
         <React.Fragment>
-          <Jumbotron>The Good Fund</Jumbotron>
-          <Container>
-            <Form>
+          <NavBar />
+          <Container style={{marginTop: "7vh"}}>
+            <Row>
+              <h1>Welcome to GoodFund</h1>
+            </Row>
 
+            <Form>
             <Form.Group as={Row} controlId="project_creator">
               <Form.Label column sm="3">
                 Your Name (First & Last)
@@ -69,7 +73,7 @@ class ProjectForm extends React.Component {
 
 
           <Form.Group as={Row} controlId="project_description">
-            <Form.Label column sm="2">
+            <Form.Label column sm="5">
               Project Description
             </Form.Label>
             <Col sm="11">
@@ -98,7 +102,21 @@ class ProjectForm extends React.Component {
 
           <Form.Group as={Row} controlId="project_deadline">
             <Form.Label column sm="2">
-              Project Timeline
+              Project Milestone 1
+            </Form.Label>
+            <Col sm="11">
+            <input
+               type="text"
+               name="project_deadline"
+               placeholder=""
+               onChange={this.handleFormChange}
+            />
+          </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="project_deadline">
+            <Form.Label column sm="2">
+              Project Milestone 2
             </Form.Label>
             <Col sm="11">
             <input

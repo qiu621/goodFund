@@ -5,6 +5,8 @@ import Nav from '../components/Nav/Nav.js';
 import logo from './img/logo512.png';
 import love from './img/love.jpeg';
 import ProjectSummary from '../components/ProjectSummary/ProjectSummary.js';
+import MileStoneItem1 from '../components/MileStoneItem/milestoneitem1.js';
+import MileStoneItem2 from '../components/MileStoneItem/milestoneitem2.js';
 
 const img = {
     width: "55%",
@@ -84,7 +86,11 @@ class ProjectPage extends React.Component {
               <Row>
                 <Col sm={8} style={{textAlign: "left"}}>
                   <h1>The Story</h1>
-                  <p>I am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our nation.
+                  <p>Project description: While good personal hygiene is well known to reduce risk of infectious disease and improve mental health, access to sanitation facilities and hygiene behaviors among people experiencing homelessness in the United States have received little attention. According to a recent paper published in the International Journal of Environmental Research and Public Health, persons experiencing homelessness in the United States “experience significant barriers to self-care and personal hygiene… including limited access to clean showers.”
+
+                  Our project aims to address this issue, creating single-use and disposable towels that can provide the sanitizing benefits of a warm shower.
+
+                    I am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our nation.
 
                       Five score years ago, a great American, in whose symbolic shadow we stand today, signed the Emancipation Proclamation. This momentous decree came as a great beacon light of hope to millions of Negro slaves who had been seared in the flames of withering injustice. It came as a joyous daybreak to end the long night of their captivity.
 
@@ -100,8 +106,8 @@ class ProjectPage extends React.Component {
                     </p>
                 </Col>
                 <Col sm={4}>
-                  <h2>Milestones</h2>
-
+                    <MileStoneItem1 />
+                    <MileStoneItem2 />
 
                 </Col>
               </Row>
