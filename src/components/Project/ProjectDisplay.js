@@ -19,8 +19,6 @@ const img = {
 
 const ProjectDisplay = ( projectInfo ) => {
   let project = projectInfo.project;
-
-
   return (
     <div class="card-group" style={card3Style}>
 			<div class="card">
