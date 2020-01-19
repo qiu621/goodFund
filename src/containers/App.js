@@ -39,6 +39,7 @@ class App extends Component {
   }
 
   getProjects() {
+    let projectList = [];
     crowdfundInstance.methods.returnAllProjects().call().then((projects) => {
       projects.forEach((projectAddress) => {
         const projectInst = crowdfundProject(projectAddress);
@@ -46,28 +47,36 @@ class App extends Component {
           const projectInfo = projectData;
           projectInfo.isLoading = false;
           projectInfo.contract = projectInst;
-          this.state.projectData.push(projectInfo);
-          this.setState({ projectData: this.state.projectData });
+          projectList.push(projectInfo);
+          this.setState({ projectData: projectList });
         });
       });
     });
   }
 
-  startProject() {
-    this.state.newProject.isLoading = true;
+  startProject(newProject, account) {
+    newProject.isLoading = true;
     crowdfundInstance.methods.startProject(
+<<<<<<< Updated upstream
       this.newProject.title,
       this.newProject.description,
       this.newProject.duration,
       web3.utils.toWei(this.newProject.amountGoal, 'ether')
+=======
+      newProject.title,
+      newProject.description,
+      newProject.duration,
+      web3.utils.toWei('1', 'ether'),
+>>>>>>> Stashed changes
     ).send({
-      from: this.state.account,
+      from: account,
     }).then((res) => {
       const projectInfo = res.events.ProjectStarted.returnValues;
       projectInfo.isLoading = false;
       projectInfo.currentAmount = 0;
       projectInfo.currentState = 0;
       projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
+<<<<<<< Updated upstream
       this.startProjectDialog = false;
       this.state.newProject = { isLoading: false };
     });
@@ -89,9 +98,10 @@ class App extends Component {
         this.projectData[index].currentState = 2;
       }
       this.setState({ projectData: this.state.projectData });
+=======
+>>>>>>> Stashed changes
     });
   }
-
 
   render () {
     return (
