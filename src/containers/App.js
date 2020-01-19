@@ -117,7 +117,7 @@ function ProjectPost(projectData) {
   let { id } = useParams();
   let project = null;
   projectData.projects.forEach((proj) => {
-    if (proj._ID === id) {
+    if (proj.project_ID === id) {
       project = proj;
     }
   });
