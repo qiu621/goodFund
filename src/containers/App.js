@@ -59,13 +59,16 @@ class App extends Component {
       newProject.project_title,
       newProject.project_description,
       newProject.project_deadline,
-      web3.utils.toWei(newProject.project_goal, 'ether')
+      web3.utils.toWei(newProject.project_goal, 'ether'),
+      newProject.project_creator,
+      newProject.project_m1,
+      newProject.project_m2
     ).send({
       from: account,
     }).then((res) => {
-      const projectInfo = res.events.ProjectStarted.returnValues;
-      projectInfo.project_total_raised = 0;
-      projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
+      // const projectInfo = res.events.ProjectStarted.returnValues;
+      // projectInfo.project_total_raised = 0;
+      // projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
     });
   }
 
@@ -87,6 +90,15 @@ class App extends Component {
     });
   }
 
+  vote(project, ballot, account) {
+    project.contract.methods.vote().send({
+      from: account,
+      value: ballot
+    }).then((res) => {
+      console.log(res);
+    })
+  }
+
   render () {
     return (
       <Router>
@@ -104,7 +116,7 @@ class App extends Component {
             <ProjectForm startProject={this.startProject} account={this.state.account}/>
           </Route>
           <Route path="/project/:id">
-            <ProjectPost projects={this.state.projectData} fundProject={this.fundProject} account={this.state.account} />
+            <ProjectPost projects={this.state.projectData} vote={this.vote} fundProject={this.fundProject} account={this.state.account} />
           </Route>
         </Switch>
       </Router>
@@ -120,7 +132,7 @@ function ProjectPost( projectParam ) {
       project = proj;
     }
   });
-  return <ProjectPage projects={projectParam.projects} project={ project } fundProject={ projectParam.fundProject } account={ projectParam.account } />;
+  return <ProjectPage projects={projectParam.projects} project={ project } vote={ projectParam.vote } fundProject={ projectParam.fundProject } account={ projectParam.account } />;
 }
 
 
