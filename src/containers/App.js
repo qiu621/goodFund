@@ -13,6 +13,8 @@ import {
   Link
 } from "react-router-dom";
 
+import crowdfundInstance from '../blockchain/crowdfundInstance';
+import crowdfundProject from '../blockchain/crowdfundProjectInstance';
 
 class App extends Component {
 
@@ -31,12 +33,45 @@ class App extends Component {
   componentWillMount() {
     web3.eth.getAccounts().then((accounts) => {
       [this.state.account] = accounts;
+      this.startProject();
       this.getProjects();
     });
   }
 
   getProjects() {
-    
+    crowdfundInstance.methods.returnAllProjects().call().then((projects) => {
+      console.log("ehe");
+      projects.forEach((projectAddress) => {
+        const projectInst = crowdfundProject(projectAddress);
+        projectInst.methods.getDetails().call().then((projectData) => {
+          const projectInfo = projectData;
+          projectInfo.isLoading = false;
+          projectInfo.contract = projectInst;
+          this.projectData.push(projectInfo);
+        });
+      });
+    });
+  }
+
+  startProject() {
+    this.state.newProject.isLoading = true;
+    crowdfundInstance.methods.startProject(
+      'PROJECT ZOU',
+      'CREATE SUPER HUMAN',
+      '52',
+      web3.utils.toWei('1', 'ether'),
+    ).send({
+      from: this.state.account,
+    }).then((res) => {
+      const projectInfo = res.events.ProjectStarted.returnValues;
+      projectInfo.isLoading = false;
+      projectInfo.currentAmount = 0;
+      projectInfo.currentState = 0;
+      projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
+      this.startProjectDialog = false;
+      this.state.newProject = { isLoading: false };
+      console.log('orgasm')
+    });
   }
 
 
