@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Button, Jumbotron, Form, Row, Col, ProgressBar } from 'react-bootstrap';
+import { Container, Button, Jumbotron, Form, Row, Col, ProgressBar, ListGroup } from 'react-bootstrap';
 import web3 from '../blockchain/web3';
 import Nav from '../components/Nav/Nav.js';
 import logo from './img/logo512.png';
@@ -9,6 +9,11 @@ const img = {
     height: "auto",
     marginLeft: "auto",
     marginRight: "auto"
+};
+
+const jumboStyle = {
+  textAlign: 'center',
+  padding: '1rem'
 };
 
 class ProjectPage extends React.Component {
@@ -45,14 +50,20 @@ class ProjectPage extends React.Component {
             <React.Fragment>
             <Nav />
 
-            <Jumbotron style={{textAlign: 'center'}}>
+            <Jumbotron style={jumboStyle}>
                 <h1>{this.props.project.project_title}</h1>
                 <p>by {this.props.project.project_creator_name}</p>
-                <div>---------</div>
                 <Container>
                   <Row>
                     <Col sm={8}><img src={logo} alt="Card image cap" style={img}/></Col>
-                    <Col sm={4}>sm=4</Col>
+                    <Col sm={4}>
+                      <ListGroup variant="flush">
+                        <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                        <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                        <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                      </ListGroup>
+                    </Col>
                   </Row>
                   </Container>
                 <h1>{ "TOTAL RAISED " + web3.utils.fromWei(this.props.project.project_total_raised) + " ETH" }</h1>
