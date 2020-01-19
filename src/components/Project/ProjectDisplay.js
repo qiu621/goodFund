@@ -17,13 +17,24 @@ const img = {
     marginRight: "auto"
 };
 
+const fundingStatus = {
+  "0": "In Progress",
+  "1": "Expired",
+  "2": "Goal Reached"
+}
+
+const getStatus = (status) => {
+  return fundingStatus[status];
+}
+
 const ProjectDisplay = ( projectInfo ) => {
   let project = projectInfo.project;
-  let creator = project.project_creator;
+  let creator = project.project_creator_name;
   let title = project.project_title;
-  let goal = project.goal;
-  let totalRaised = project.totalRaised;
-  let progress = totalRaised / goal * 100; //TODO: change to good naming
+  let goal = project.project_goal;
+  let totalRaised = project.project_total_raised;
+  let status = getStatus(project.project_status);
+  let progress = totalRaised / goal * 100 || 0; //TODO: change to good naming
 
   return (
     <div class="card-group" style={card3Style}>
@@ -34,6 +45,7 @@ const ProjectDisplay = ( projectInfo ) => {
 					<p class="card-text">by {creator}</p>
           <p>{progress}% of goal</p>
           <ProgressBar variant="success" now={progress}/>
+          <p>{ status }</p>
 				</div>
 		</div>
   </div>
