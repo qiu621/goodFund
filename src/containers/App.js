@@ -59,8 +59,7 @@ class App extends Component {
       newProject.project_title,
       newProject.project_description,
       newProject.project_deadline,
-      web3.utils.toWei(newProject.project_goal, 'ether'),
-      newProject.project_creator
+      web3.utils.toWei(newProject.project_goal, 'ether')
     ).send({
       from: account,
     }).then((res) => {
@@ -93,13 +92,13 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/">
-            <div className="App">
-              <Header />
+          <div className="App">
+          <Header />
               <Container style={{marginTop: "5vh"}}>
-                <h2 style={{marginBottom: "5vh"}}>Featured Good Projects</h2>
-                <ProjectList projects={this.state.projectData} />
+              <h2 style={{marginBottom: "5vh"}}>Featured Good Projects</h2>
+              <ProjectList projects={this.state.projectData} />
               </Container>
-            </div>
+          </div>
           </Route>
           <Route path="/new">
             <ProjectForm startProject={this.startProject} account={this.state.account}/>
