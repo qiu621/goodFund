@@ -105,8 +105,8 @@ class App extends Component {
           <Route path="/new">
             <ProjectForm startProject={this.startProject} account={this.state.account}/>
           </Route>
-          <Route path="/:title">
-            <ProjectPost />
+          <Route path="/:id">
+            <ProjectPost projects={this.state.projectData} />
           </Route>
         </Switch>
       </Router>
@@ -114,11 +114,15 @@ class App extends Component {
   }
 }
 
-function ProjectPost() {
-  let { title } = useParams();
-  return (
-    <ProjectPage />
-  );
+function ProjectPost(projects) {
+  let { id } = useParams();
+  let project = null;
+  projects.projects.forEach((proj) => {
+    if (proj._ID === id) {
+      project = proj;
+    }
+  });
+  return <ProjectPage project={project} />;
 }
 
 
