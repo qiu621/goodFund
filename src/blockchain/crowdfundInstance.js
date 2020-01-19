@@ -1,7 +1,7 @@
 /* eslint-disable */
 import web3 from './web3';
 
-const address = '0x23d3e8f52d3fc285689ecbba2f01caecf8f12332'; // Your deployed contract's address goes here
+const address = '0x962ED7D83D3ece23e0A4B3425D0F69B44cCd050d'; // Your deployed contract's address goes here
 // Example:
 // const address = '0x09r80cnasjfaks93m9v2';
 
