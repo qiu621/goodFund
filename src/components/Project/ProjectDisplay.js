@@ -3,8 +3,8 @@ import {
     Link
   } from "react-router-dom";
 
-const ProjectDisplay = ( project ) => {
-  project = project.project;
+const ProjectDisplay = ( projectInfo ) => {
+  let project = projectInfo.project;
   return (
     <div class="card-group">
 			<div class="card">
@@ -14,7 +14,7 @@ const ProjectDisplay = ( project ) => {
 					<p class="card-text">Save eagles in the environment while drinking water.</p>
 				</div>
 				<div class="card-footer">
-          <Link to={"/" + project._ID}>This is a Project called {project.project_title}!!</Link>				
+          <Link to={"/project/" + project.project_ID}>This is a Project called {project.project_title}!!</Link>				
 			</div>
 		</div>
   </div>
