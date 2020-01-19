@@ -59,7 +59,8 @@ class App extends Component {
       newProject.project_title,
       newProject.project_description,
       newProject.project_deadline,
-      web3.utils.toWei(newProject.project_goal, 'ether')
+      web3.utils.toWei(newProject.project_goal, 'ether'),
+      newProject.project_creator
     ).send({
       from: account,
     }).then((res) => {

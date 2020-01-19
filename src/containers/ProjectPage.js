@@ -36,7 +36,7 @@ class ProjectPage extends React.Component {
             <Jumbotron>
                 <h1>{ this.props.project.project_title }</h1>
                 <div>---------</div>
-                <h1>{ "TOTAL RAISED " + web3.utils.fromWei(this.props.project.totalRaised) + " ETH" }</h1>
+                <h1>{ "TOTAL RAISED " + web3.utils.fromWei(this.props.project.project_total_raised) + " ETH" }</h1>
 
                 <Form>
                   <Col sm="10">
