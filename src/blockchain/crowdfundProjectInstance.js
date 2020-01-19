@@ -117,6 +117,21 @@ const abi = [
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "project_creator_name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [],
 		"name": "updateStatus",
@@ -149,6 +164,21 @@ const abi = [
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCreatorName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -313,6 +343,11 @@ const abi = [
 				"internalType": "uint256",
 				"name": "project_ID",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "project_creator_name",
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -365,6 +400,11 @@ const abi = [
 				"internalType": "uint256",
 				"name": "_ID",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
 			}
 		],
 		"payable": false,
