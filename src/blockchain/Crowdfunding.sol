@@ -96,10 +96,40 @@ contract Project {
         msg.sender.transfer(amount);
     }
 
+    function getCreator() public view returns (address payable) {
+        return project_creator;
+    }
+
+    function getTitle() public view returns (string memory) {
+        return project_title;
+    }
+
+    function getDescription() public view returns (string memory) {
+        return project_description;
+    }
+
+    function getDeadline() public view returns (uint256) {
+        return deadline;
+    }
+
+    function getGoal() public view returns (uint256) {
+        return goal;
+    }
+
+    function getID() public view returns (uint256) {
+        return project_ID;
+    }
+
     function getDetails() public returns
-        (address payable , string memory , string memory, uint256, uint256, uint256, uint256, uint256) {
-            uint256 totalRaised = getTotalRaised();
+        (address payable project_creator, string memory project_title, string memory project_description, uint256 deadline, uint256 totalRaised, uint256 goal, uint256 status, uint256 project_ID) {
+            project_creator = getCreator();
+            project_title = getTitle();
+            project_description = getDescription();
+            deadline = getDeadline();
+            totalRaised = getTotalRaised();
+            goal = getGoal();
             status = getStatus();
+            project_ID = getID();
         return (project_creator, project_title, project_description, deadline, totalRaised, goal, status, project_ID);
         }
     }
