@@ -33,15 +33,14 @@ class ProjectPage extends React.Component {
                 <h1>{ this.props.project.project_title }</h1>
                 
                 <Form>
-    
                   <Form.Label column sm="2">
-                    Your Name (First & Last)
+                    FUND!
                   </Form.Label>
                   <Col sm="10">
                   <input
                      type="text"
                      name="amount"
-                     placeholder=""
+                     placeholder="Amount"
                      onChange={this.handleFormChange}
                   />
                   </Col>
@@ -49,7 +48,6 @@ class ProjectPage extends React.Component {
             </Jumbotron>
         );
     }
-    
 }
   
 

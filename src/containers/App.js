@@ -5,6 +5,8 @@ import Header from '../components/Header/Header';
 import ProjectList from '../components/ProjectList/ProjectList';
 import ProjectForm from './ProjectForm';
 import ProjectPage from './ProjectPage';
+import { Container, Button, Row, Col } from 'react-bootstrap';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -94,10 +96,15 @@ class App extends Component {
         <Switch>
           <Route exact path="/">
           <div className="App">
-            <header className="App-header">
+            <Container>
               <Header />
+<<<<<<< HEAD
               <ProjectList projects={this.state.projectData} fundProject={this.fundProject} account={this.state.account} />
             </header>
+=======
+              <ProjectList projects={this.state.projectData} />
+            </Container>
+>>>>>>> 716fb594141e7d3be2ac4901f4023869f0981bd7
           </div>
           </Route>
           <Route path="/new">
