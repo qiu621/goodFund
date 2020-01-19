@@ -1,26 +1,11 @@
 /* eslint-disable */
 import web3 from './web3';
 
-const address = '0x425e000dF900530B4A1650dbc071B985125A1e7C'; // Your deployed contract's address goes here
+const address = '0x0E88962aB7D5FC6E3c6FF479C9791Ccf5c15F7A1'; // Your deployed contract's address goes here
 // Example:
 // const address = '0x09r80cnasjfaks93m9v2';
 
 const abi = [
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "returnAllProjects",
-		"outputs": [
-			{
-				"internalType": "contract Project[]",
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
 	{
 		"constant": false,
 		"inputs": [
@@ -93,6 +78,21 @@ const abi = [
 		],
 		"name": "ProjectStarted",
 		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "returnAllProjects",
+		"outputs": [
+			{
+				"internalType": "contract Project[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]; // Your ABI goes here (Crowdfunding contract)
 // Example:

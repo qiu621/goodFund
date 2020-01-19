@@ -69,12 +69,9 @@ contract Project {
         return status;
     }
 
-    function pledge(uint256 amount) public payable {
+    function pledge() public payable {
         require(now < deadline, "time is past pleding period"); // solium-disable-line
-        require(msg.value == amount, "amount sent is not amount promised");
-        require(amount > 0, "cannot contribute negative amount");
-
-        addressToPledgeAmount[msg.sender] += amount;
+        addressToPledgeAmount[msg.sender] += msg.value;
         emit newPledge(msg.sender, msg.value, getTotalRaised());
     }
 
