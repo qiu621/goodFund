@@ -40,10 +40,10 @@ class ProjectForm extends React.Component {
             <Form>
 
             <Form.Group as={Row} controlId="project_creator">
-              <Form.Label column sm="2">
+              <Form.Label column sm="3">
                 Your Name (First & Last)
               </Form.Label>
-              <Col sm="10">
+              <Col sm="11">
               <input
                  type="text"
                  name="project_creator"
@@ -57,7 +57,7 @@ class ProjectForm extends React.Component {
             <Form.Label column sm="2">
               Project Name
             </Form.Label>
-            <Col sm="10">
+            <Col sm="11">
             <input
                type="text"
                name="project_title"
@@ -72,7 +72,7 @@ class ProjectForm extends React.Component {
             <Form.Label column sm="2">
               Project Description
             </Form.Label>
-            <Col sm="10">
+            <Col sm="11">
             <input
                type="text"
                name="project_description"
@@ -86,7 +86,7 @@ class ProjectForm extends React.Component {
             <Form.Label column sm="2">
               Target Funding Total
             </Form.Label>
-            <Col sm="10">
+            <Col sm="11">
             <input
                type="text"
                name="project_goal"
@@ -100,7 +100,7 @@ class ProjectForm extends React.Component {
             <Form.Label column sm="2">
               Project Timeline
             </Form.Label>
-            <Col sm="10">
+            <Col sm="11">
             <input
                type="text"
                name="project_deadline"
@@ -113,7 +113,7 @@ class ProjectForm extends React.Component {
         </Form>
 
         <Button onClick={this.handleButtonSubmit}>
-          Create my Project
+          CREATE MY PROJECT
         </Button>
 
         </Container>

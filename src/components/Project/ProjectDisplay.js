@@ -28,7 +28,7 @@ const ProjectDisplay = ( projectInfo ) => {
   return (
     <div class="card-group" style={card3Style}>
 			<div class="card">
-				<img class="card-img-top" src={logo} alt="Card image cap" style={img}/>
+				<img class="App-logo" src={logo} alt="Card image cap" style={img}/>
 				<div class="card-body">
 					<Link to={"/project/" + project.project_ID}><h5 class="card-title">{title}</h5></Link>
 					<p class="card-text">by {creator}</p>

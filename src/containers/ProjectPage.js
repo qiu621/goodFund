@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Button, Jumbotron, Form, Row, Col } from 'react-bootstrap';
+import web3 from '../blockchain/web3';
 
 class ProjectPage extends React.Component {
 
@@ -34,8 +35,8 @@ class ProjectPage extends React.Component {
         return (
             <Jumbotron>
                 <h1>{ this.props.project.project_title }</h1>
-                <div>...</div>
-                <h1>{ this.props.project.totalRaised }</h1>
+                <div>---------</div>
+                <h1>{ "TOTAL RAISED " + web3.utils.fromWei(this.props.project.totalRaised) + " ETH" }</h1>
 
                 <Form>
                   <Col sm="10">

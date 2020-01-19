@@ -64,19 +64,19 @@ class App extends Component {
       from: account,
     }).then((res) => {
       const projectInfo = res.events.ProjectStarted.returnValues;
-      projectInfo.totalRaised = 0;
+      projectInfo.project_total_raised = 0;
       projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
     });
   }
 
   fundProject(projects, project, amount, account) {
     const projectContract = project.contract;
-    projectContract.methods.pledge(amount).send({
+    projectContract.methods.pledge().send({
       from: account,
       value: web3.utils.toWei(amount, 'ether'),
     }).then((res) => {
       const newTotal = parseInt(res.events.newPledge.returnValues.total_raised, 10);
-      project.totalRaised = newTotal;
+      project.project_total_raised = newTotal;
       projects[project.project_ID] = project;
     });
   }

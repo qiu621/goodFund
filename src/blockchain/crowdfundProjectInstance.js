@@ -5,6 +5,21 @@ const abi = [
 	{
 		"constant": true,
 		"inputs": [],
+		"name": "project_goal",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
 		"name": "getCreator",
 		"outputs": [
 			{
@@ -26,21 +41,6 @@ const abi = [
 				"internalType": "string",
 				"name": "",
 				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "status",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -78,42 +78,12 @@ const abi = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "deadline",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [],
 		"name": "refundAll",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "goal",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -159,6 +129,21 @@ const abi = [
 		"constant": true,
 		"inputs": [],
 		"name": "getDeadline",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "project_deadline",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -270,6 +255,21 @@ const abi = [
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "project_status",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [],
 		"name": "getDetails",
@@ -291,22 +291,22 @@ const abi = [
 			},
 			{
 				"internalType": "uint256",
-				"name": "deadline",
+				"name": "project_deadline",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "totalRaised",
+				"name": "project_total_raised",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "goal",
+				"name": "project_goal",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "status",
+				"name": "project_status",
 				"type": "uint256"
 			},
 			{
