@@ -212,7 +212,7 @@ const abi = [
 			},
 			{
 				"internalType": "string",
-				"name": "_project_title",
+				"name": "project_title",
 				"type": "string"
 			},
 			{
