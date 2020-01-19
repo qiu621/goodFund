@@ -3,9 +3,10 @@ import { Container, Button, Jumbotron, Form, Row, Col, ProgressBar, ListGroup } 
 import web3 from '../blockchain/web3';
 import Nav from '../components/Nav/Nav.js';
 import logo from './img/logo512.png';
+import love from './img/love.jpeg';
 
 const img = {
-    width: "60%",
+    width: "50%",
     height: "auto",
     marginLeft: "auto",
     marginRight: "auto"
@@ -15,6 +16,11 @@ const jumboStyle = {
   textAlign: 'center',
   padding: '1rem'
 };
+
+const listGroupStyle = {
+  padding: '2vh'
+}
+
 
 class ProjectPage extends React.Component {
 
@@ -43,25 +49,39 @@ class ProjectPage extends React.Component {
     }
 
     render() {
+
         if (!this.props.project) {
             return null;
         }
+
+        let project = this.props.project;
+        let curr = web3.utils.fromWei(project.project_total_raised);
+        let goal = web3.utils.fromWei(project.project_goal);
+        let daysLeft = project.project_deadline;
+
         return (
             <React.Fragment>
             <Nav />
-
             <Jumbotron style={jumboStyle}>
                 <h1>{this.props.project.project_title}</h1>
                 <p>by {this.props.project.project_creator_name}</p>
                 <Container>
                   <Row>
-                    <Col sm={8}><img src={logo} alt="Card image cap" style={img}/></Col>
+                    <Col sm={8}><img src={love} alt="True Love" style={img}/></Col>
                     <Col sm={4}>
+                      <ProgressBar now={curr / goal * 100} />
                       <ListGroup variant="flush">
-                        <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                        <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-                        <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                        <ListGroup.Item style={listGroupStyle}>
+                          <h6>{curr} ether</h6>
+                          <p>raised of {goal} ether</p>
+                        </ListGroup.Item>
+                        <ListGroup.Item style={listGroupStyle}>
+                          {daysLeft} daysLeft
+                        </ListGroup.Item>
+                        <ListGroup.Item style={listGroupStyle}>
+                          x backers //(TODO) fill this in
+                        </ListGroup.Item>
+                        <Button type="submit">Back {this.props.project.project_title}</Button>
                       </ListGroup>
                     </Col>
                   </Row>
