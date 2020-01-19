@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './img/logo512.png';
-import ProgressBar from 'react-bootstrap/ProgressBar'
+import ProgressBar from 'react-bootstrap/ProgressBar';
+
 import {
     Link
   } from "react-router-dom";
@@ -18,6 +19,8 @@ const img = {
 
 const ProjectDisplay = ( projectInfo ) => {
   let project = projectInfo.project;
+
+
   return (
     <div class="card-group" style={card3Style}>
 			<div class="card">
