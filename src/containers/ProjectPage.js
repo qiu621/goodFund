@@ -4,12 +4,11 @@ import Button from 'react-bootstrap/Button';
 
 
 const ProjectPage = ( project ) => {
-    return (
+    return (    
         <Jumbotron>
-            <h1>Hello, world!</h1>
+            <h1>The Eagle</h1>
             <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
+                
             </p>
             <p>
                 <Button variant="primary">Learn more</Button>

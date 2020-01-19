@@ -1,7 +1,12 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import {
     Link
   } from "react-router-dom";
+import { Container, Button, Jumbotron } from 'react-bootstrap';
 
 class NewProject extends React.Component {
     constructor(props) {
@@ -25,29 +30,54 @@ class NewProject extends React.Component {
     }
     render() {
       return (
-        <div>
-            <Link to="/">GO BACK</Link>
-            <form className="column" onSubmit={this.handleSubmit}>
-            <label className="header" htmlFor="username">
-                {this.props.label}
-            </label>
-            <input
-                id="username"
-                placeholder="Github Username"
-                type="text"
-                value={this.state.username}
-                autoComplete="off"
-                onChange={this.handleChange}
-            />
-            <button
-                className="button"
-                type="submit"
-                disabled={!this.state.username}
-            >
-                Submit
-            </button>
-            </form>
-        </div>
+        <React.Fragment>
+          <Jumbotron>The Good Fund</Jumbotron>
+          <Container>
+            <Form>
+            <Form.Group as={Row} controlId="Project Name">
+            <Form.Label column sm="2">
+              Project Name
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="Project Name" placeholder="Project Name"/>
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="Project Description">
+            <Form.Label column sm="2">
+              Project Description
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="Project Description" placeholder="Project Description" />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="Target Funding Total">
+            <Form.Label column sm="2">
+              Target Funding Total
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="Target Funding Total" placeholder="Target Funding Total"/>
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="Project Timeline">
+            <Form.Label column sm="2">
+              Project Timeline
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="Project Timeline" placeholder="Project Timeline" />
+            </Col>
+          </Form.Group>
+
+        </Form>
+
+        <Button>Create my Project</Button>
+
+        </Container>
+            
+
+        </React.Fragment>
       );
     }
 }
