@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-    Link
-  } from "react-router-dom";
-  import { Container, Button, Jumbotron, Form, Row, Col } from 'react-bootstrap';
+import { Container, Button, Jumbotron, Form, Row, Col } from 'react-bootstrap';
 
 class ProjectForm extends React.Component {
 
@@ -16,11 +13,9 @@ class ProjectForm extends React.Component {
         project_goal: '$0.001'
       };
       this.startProject = props.startProject;
-      this.state.account = props.account;
 
-
-    this.handleFormChange = this.handleFormChange.bind(this);
-    this.handleButtonSubmit = this.handleButtonSubmit.bind(this);
+      this.handleFormChange = this.handleFormChange.bind(this);
+      this.handleButtonSubmit = this.handleButtonSubmit.bind(this);
     }
 
     handleFormChange(event) {

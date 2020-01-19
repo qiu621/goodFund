@@ -35,7 +35,6 @@ class App extends Component {
   componentDidMount() {
     web3.eth.getAccounts().then((accounts) => {
       this.setState({ account: accounts[0] });
-      // this.startProject();
       this.getProjects();
     });
   }
@@ -70,19 +69,16 @@ class App extends Component {
     });
   }
 
-  fundProject(index, amount) {
-    const projectContract = this.state.projectData[index].contract;
+  fundProject(projects, project, amount, account) {
+    const projectContract = project.contract;
     projectContract.methods.pledge(amount).send({
-      from: this.state.account,
+      from: account,
       value: web3.utils.toWei(amount, 'ether'),
     }).then((res) => {
       const newTotal = parseInt(res.events.newPledge.returnValues.total_raised, 10);
-      const projectGoal = parseInt(this.state.projectData[index].goal, 10);
-      this.state.projectData[index].currentAmount = newTotal;
-      // if (newTotal >= projectGoal) {
-      //   this.state.projectData[index].currentState = 2;
-      // }
-      this.forceUpdate()
+      project.totalRaised = newTotal;
+      projects[project.project_ID] = project;
+      this.setState({ projectData: projects });
     });
   }
 
@@ -108,8 +104,8 @@ class App extends Component {
           <Route path="/new">
             <ProjectForm startProject={this.startProject} account={this.state.account}/>
           </Route>
-          <Route path="/:id">
-            <ProjectPost projects={this.state.projectData} />
+          <Route path="/project/:id">
+            <ProjectPost projects={this.state.projectData} fundProject={this.fundProject} account={this.state.account} />
           </Route>
         </Switch>
       </Router>
@@ -117,15 +113,15 @@ class App extends Component {
   }
 }
 
-function ProjectPost(projects) {
+function ProjectPost( projectParam ) {
   let { id } = useParams();
   let project = null;
-  projects.projects.forEach((proj) => {
-    if (proj._ID === id) {
+  projectParam.projects.forEach((proj) => {
+    if (proj.project_ID === id) {
       project = proj;
     }
   });
-  return <ProjectPage project={project} />;
+  return <ProjectPage projects={projectParam.projects} project={ project } fundProject={ projectParam.fundProject } account={ projectParam.account } />;
 }
 
 
