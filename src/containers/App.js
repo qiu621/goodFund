@@ -71,7 +71,7 @@ class App extends Component {
 
   fundProject(projects, project, amount, account) {
     const projectContract = project.contract;
-    projectContract.methods.pledge(amount).send({
+    projectContract.methods.pledge().send({
       from: account,
       value: web3.utils.toWei(amount, 'ether'),
     }).then((res) => {
