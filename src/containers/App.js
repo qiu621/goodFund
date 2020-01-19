@@ -11,8 +11,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams,
-  Link
+  useParams
 } from "react-router-dom";
 
 import crowdfundInstance from '../blockchain/crowdfundInstance';
@@ -107,7 +106,7 @@ class App extends Component {
           <Route path="/new">
             <ProjectForm startProject={this.startProject} account={this.state.account}/>
           </Route>
-          <Route path="/:id">
+          <Route path="/project/:id">
             <ProjectPost projects={this.state.projectData} />
           </Route>
         </Switch>
@@ -116,11 +115,11 @@ class App extends Component {
   }
 }
 
-function ProjectPost(projects) {
+function ProjectPost(projectData) {
   let { id } = useParams();
   let project = null;
-  projects.projects.forEach((proj) => {
-    if (proj._ID === id) {
+  projectData.projects.forEach((proj) => {
+    if (proj.project_ID === id) {
       project = proj;
     }
   });

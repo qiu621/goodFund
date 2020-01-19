@@ -1,12 +1,11 @@
 import React from 'react';
 import ProjectDisplay from '../Project/ProjectDisplay';
 
-const ProjectList = ( projects ) => {
-    projects = projects.projects;
+const ProjectList = ( projectData ) => {
     return (
         <div className="row mt-3">
-            {projects.map(project =>
-                <ProjectDisplay key={project._ID} project={project} />
+            {projectData.projects.map(project =>
+                <ProjectDisplay key={project.project_ID} project={project} />
             )}
         </div>
     );

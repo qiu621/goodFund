@@ -3,10 +3,10 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 
 
-const ProjectPage = ( project ) => {
+const ProjectPage = ( projectInfo ) => {
     return (
         <Jumbotron>
-            <h1>{ project.project.project_title }</h1>
+            <h1>{ projectInfo.project.project_title }</h1>
             <p>
                 <Button variant="primary">Learn more</Button>
             </p>
