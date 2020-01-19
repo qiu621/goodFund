@@ -61,6 +61,7 @@ class ProjectPage extends React.Component {
         let project = this.props.project;
         let curr = web3.utils.fromWei(project.project_total_raised);
         let goal = web3.utils.fromWei(project.project_goal);
+        let percentComplete = curr / goal;
         let daysLeft = project.project_deadline;
 
         return (
@@ -71,7 +72,7 @@ class ProjectPage extends React.Component {
                 <p>by {this.props.project.project_creator_name}</p>
                 <Container>
                   <Row>
-                    <Col sm={8}><img src={love} alt="True Love" style={img}/></Col>
+                    <Col sm={8}><img src={logo} alt="True Love" style={img}/></Col>
                     <Col sm={4}>
                       <ProjectSummary projects={prop.projects} project={ prop.project } fundProject={ prop.fundProject } account={ prop.account }/>
                     </Col>

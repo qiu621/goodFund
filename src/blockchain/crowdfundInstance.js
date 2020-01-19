@@ -1,27 +1,12 @@
 /* eslint-disable */
 import web3 from './web3';
 
-const address = '0xBcB864d2923B2E9989aAE456513163B2821c0f79'; // Your deployed contract's address goes here
+const address = '0x962ED7D83D3ece23e0A4B3425D0F69B44cCd050d'; // Your deployed contract's address goes here
 // Example:
 // const address = '0x09r80cnasjfaks93m9v2';
 
 const abi = 
 [
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "returnAllProjects",
-		"outputs": [
-			{
-				"internalType": "contract Project[]",
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
 	{
 		"constant": false,
 		"inputs": [
@@ -37,7 +22,7 @@ const abi =
 			},
 			{
 				"internalType": "uint256",
-				"name": "numberOfDays",
+				"name": "daysTillDdl",
 				"type": "uint256"
 			},
 			{
@@ -49,12 +34,37 @@ const abi =
 				"internalType": "string",
 				"name": "name",
 				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "m1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "m2",
+				"type": "uint256"
 			}
 		],
 		"name": "startProject",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "returnAllProjects",
+		"outputs": [
+			{
+				"internalType": "contract Project[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -93,6 +103,18 @@ const abi =
 			{
 				"indexed": false,
 				"internalType": "uint256",
+				"name": "project_m1",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "project_m2",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
 				"name": "goalAmount",
 				"type": "uint256"
 			},
@@ -106,22 +128,7 @@ const abi =
 		"name": "ProjectStarted",
 		"type": "event"
 	}
-]; // Your ABI goes here (Crowdfunding contract)
-// Example:
-// const abi = [
-//     {
-//         "anonymous": false,
-//         "inputs": [
-//             {
-//                 "indexed": false,
-//                 "name": "contractAddress",
-//                 "type": "address"
-//             }
-//         ],
-//         "name": "ProjectStarted",
-//         "type": "event"
-//     }
-// ];
+];
 
 const instance = new web3.eth.Contract(abi, address);
 

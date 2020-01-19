@@ -4,8 +4,14 @@ import web3 from './web3';
 const abi = [
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "project_goal",
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "pledgeArr",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -15,6 +21,21 @@ const abi = [
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ballot",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -48,36 +69,6 @@ const abi = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "project_creator",
-		"outputs": [
-			{
-				"internalType": "address payable",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "project_title",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [],
 		"name": "refundAll",
@@ -87,18 +78,29 @@ const abi = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "project_description",
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "voters",
+				"type": "address[]"
+			},
+			{
+				"internalType": "address",
+				"name": "a",
+				"type": "address"
+			}
+		],
+		"name": "contains",
 		"outputs": [
 			{
-				"internalType": "string",
+				"internalType": "bool",
 				"name": "",
-				"type": "string"
+				"type": "bool"
 			}
 		],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -117,21 +119,6 @@ const abi = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "project_creator_name",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [],
 		"name": "updateStatus",
@@ -144,21 +131,6 @@ const abi = [
 		"constant": true,
 		"inputs": [],
 		"name": "getDeadline",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "project_deadline",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -197,12 +169,12 @@ const abi = [
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "getTotalRaised",
+		"name": "getM2Task",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "string",
 				"name": "",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -212,28 +184,7 @@ const abi = [
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "project_ID",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "addressToPledgeAmount",
+		"name": "getTotalRaised",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -272,6 +223,21 @@ const abi = [
 	{
 		"constant": true,
 		"inputs": [],
+		"name": "getYesVotes",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
 		"name": "getGoal",
 		"outputs": [
 			{
@@ -287,12 +253,57 @@ const abi = [
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "project_status",
+		"name": "getM2",
 		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getNoVotes",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getM1",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getM1Task",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -321,11 +332,6 @@ const abi = [
 			},
 			{
 				"internalType": "uint256",
-				"name": "project_deadline",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
 				"name": "project_total_raised",
 				"type": "uint256"
 			},
@@ -348,10 +354,51 @@ const abi = [
 				"internalType": "string",
 				"name": "project_creator_name",
 				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "project_m1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "project_m2",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "project_yesVotes",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "project_noVotes",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "VotedArr",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -405,6 +452,16 @@ const abi = [
 				"internalType": "string",
 				"name": "name",
 				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "m1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "m2",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -462,24 +519,7 @@ const abi = [
 		"name": "peopleRefunded",
 		"type": "event"
 	}
-]; // Your ABI goes here (Project contract)
-// Example:
-// const abi = [
-//   {
-//     "constant": true,
-//     "inputs": [],
-//     "name": "creator",
-//     "outputs": [
-//       {
-//         "name": "",
-//         "type": "address"
-//       }
-//     ],
-//     "payable": false,
-//     "stateMutability": "view",
-//     "type": "function"
-//   }
-// ];
+];
 
 export default (address) => {
   const instance = new web3.eth.Contract(abi, address);
