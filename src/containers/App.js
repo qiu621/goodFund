@@ -30,24 +30,24 @@ class App extends Component {
 
   }
 
-  componentWillMount() {
+  componentDidMount() {
     web3.eth.getAccounts().then((accounts) => {
       [this.state.account] = accounts;
-      this.startProject();
+      // this.startProject();
       this.getProjects();
     });
   }
 
   getProjects() {
     crowdfundInstance.methods.returnAllProjects().call().then((projects) => {
-      console.log("ehe");
       projects.forEach((projectAddress) => {
         const projectInst = crowdfundProject(projectAddress);
         projectInst.methods.getDetails().call().then((projectData) => {
           const projectInfo = projectData;
           projectInfo.isLoading = false;
           projectInfo.contract = projectInst;
-          this.projectData.push(projectInfo);
+          this.state.projectData.push(projectInfo);
+          this.setState({ projectData: this.state.projectData });
         });
       });
     });
