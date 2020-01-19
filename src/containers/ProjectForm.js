@@ -4,7 +4,7 @@ import {
   } from "react-router-dom";
   import { Container, Button, Jumbotron, Form, Row, Col } from 'react-bootstrap';
 
-class NewProject extends React.Component {
+class ProjectForm extends React.Component {
 
     constructor(props) {
       super(props);
@@ -13,8 +13,11 @@ class NewProject extends React.Component {
         project_title: 'HappyBird',
         project_description: 'Fly away, fly away',
         project_deadline: 'Right now',
-        project_goal: '$1000000000000'
+        project_goal: '$0.001'
       };
+      this.startProject = props.startProject;
+      this.state.account = props.account;
+
 
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleButtonSubmit = this.handleButtonSubmit.bind(this);
@@ -31,7 +34,7 @@ class NewProject extends React.Component {
 
     handleButtonSubmit(event) {
       event.preventDefault();
-      this.props.onSubmit(this.state.title);
+      this.startProject(this.state, this.props.account);
     }
 
     render() {
@@ -126,4 +129,4 @@ class NewProject extends React.Component {
     }
 }
 
-export default NewProject;
+export default ProjectForm;

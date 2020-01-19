@@ -3,7 +3,7 @@ import './App.css';
 import web3 from '../blockchain/web3';
 import Header from '../components/Header/Header';
 import ProjectList from '../components/ProjectList/ProjectList';
-import NewProject from './NewProject';
+import ProjectForm from './ProjectForm';
 import ProjectPage from './ProjectPage';
 import {
   BrowserRouter as Router,
@@ -32,7 +32,7 @@ class App extends Component {
 
   componentDidMount() {
     web3.eth.getAccounts().then((accounts) => {
-      [this.state.account] = accounts;
+      this.setState({ account: accounts[0] });
       // this.startProject();
       this.getProjects();
     });
@@ -103,13 +103,13 @@ class App extends Component {
           </div>
           </Route>
           <Route path="/new">
-            <NewProject />
+            <ProjectForm startProject={this.startProject} account={this.state.account}/>
           </Route>
           <Route path="/:title">
             <ProjectPost />
           </Route>
         </Switch>
-      </Router>      
+      </Router>
     );
   }
 }
