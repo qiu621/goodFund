@@ -64,9 +64,11 @@ contract VoteBox {
     uint256 public closing_date;
     uint256 public yes_votes;
     uint256 public total_votes;
+    bool public doneVoting;
 
     constructor(address[] memory _eligible_voters, uint256 _closing_date) public {
         eligible_voters = _eligible_voters;
+        doneVoting = false;
         closing_date = _closing_date;
         yes_votes = 0;
         total_votes = 0;
@@ -90,6 +92,9 @@ contract VoteBox {
         }
         total_votes = total_votes + 1;
         already_voted.push(potential_voter);
+        if (pastVotingTime()) {
+            doneVoting = true;
+        }
     }
 
     function getYes() public view returns (uint256) {
@@ -105,7 +110,7 @@ contract VoteBox {
         return (getYes(), getTotal());
     }
 
-    function pastVotingTime(uint end_voting_time) public returns (bool){
+    function pastVotingTime() public returns (bool){
         return now > closing_date;
     }
 }
@@ -121,6 +126,7 @@ contract Project {
     string public project_creator_name;
     uint256 public project_milestone_one_deadline;
     uint256 public project_milestone_two_deadline;
+    VoteBox private currentVoteBox;
     uint256 next_vote_date;
     mapping(address => uint256) public addressToPledgeAmount;
     address[] public eligible_voters;
@@ -178,7 +184,7 @@ contract Project {
         }
     }
 
-    function getIsVoting() public returns (bool) {
+    function nextVoteDateChanged() public returns (bool) {
         uint256 current_next = next_vote_date;
         updateVoteDate();
         return current_next != next_vote_date;
@@ -188,6 +194,10 @@ contract Project {
         uint voting_deadline = (uint(next_vote_date) + now)/uint(2);
             return new VoteBox(eligible_voters, voting_deadline);
     }
+    if (currentVoteBox.doneVoting) {
+
+    } 
+    nextVoteDateChanged() 
 
     function getStatus() public returns (uint256) {
         updateStatus();
@@ -279,7 +289,9 @@ contract Project {
             project_creator_name = getCreatorName();
             project_milestone_one_deadline = getMilestoneOne();
             project_milestone_two_deadline = getMilestoneTwo();
-            project_is_voting = getIsVoting();
+            if(getIsVoting()){
+
+            }
         return (project_creator,
                 project_title,
                 project_description,
