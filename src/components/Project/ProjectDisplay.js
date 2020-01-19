@@ -19,16 +19,21 @@ const img = {
 
 const ProjectDisplay = ( projectInfo ) => {
   let project = projectInfo.project;
-
+  let creator = project.project_creator;
+  let title = project.project_title;
+  let goal = project.goal;
+  let totalRaised = project.totalRaised;
+  let progress = totalRaised / goal * 100; //TODO: change to good naming
 
   return (
     <div class="card-group" style={card3Style}>
 			<div class="card">
 				<img class="card-img-top" src={logo} alt="Card image cap" style={img}/>
 				<div class="card-body">
-					<Link to={"/project/" + project.project_ID}><h5 class="card-title">{project.project_title}</h5></Link>
-					<p class="card-text">{project.project_description}</p>
-          <ProgressBar variant="success" now={40} />
+					<Link to={"/project/" + project.project_ID}><h5 class="card-title">{title}</h5></Link>
+					<p class="card-text">by {creator}</p>
+          <p>{progress}% of goal</p>
+          <ProgressBar variant="success" now={progress}/>
 				</div>
 		</div>
   </div>
