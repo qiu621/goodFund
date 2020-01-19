@@ -29,11 +29,13 @@ class ProjectPage extends React.Component {
 
     render() {
         if (!this.props.project) {
-            return;
+            return <p>Go back to base URL</p>;
         }
         return (
             <Jumbotron>
                 <h1>{ this.props.project.project_title }</h1>
+                <div>...</div>
+                <h1>{ this.props.project.totalRaised }</h1>
 
                 <Form>
                   <Col sm="10">
