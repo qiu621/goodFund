@@ -21,21 +21,21 @@ class ProjectPage extends React.Component {
         [name] : value
         });
     }
-  
+
     handleButtonSubmit(event) {
         event.preventDefault();
-        this.props.fundProject(this.props.project.project_ID, this.state.amount, this.props.account);
+        this.props.fundProject(this.props.projects, this.props.project, this.state.amount, this.props.account);
     }
 
     render() {
+        if (!this.props.project) {
+            return;
+        }
         return (
             <Jumbotron>
                 <h1>{ this.props.project.project_title }</h1>
                 
                 <Form>
-                  <Form.Label column sm="2">
-                    FUND!
-                  </Form.Label>
                   <Col sm="10">
                   <input
                      type="text"
@@ -45,10 +45,13 @@ class ProjectPage extends React.Component {
                   />
                   </Col>
                 </Form>
+                <Button onClick={this.handleButtonSubmit}>
+                    FUND!
+                </Button>
             </Jumbotron>
         );
     }
 }
-  
+
 
 export default ProjectPage;
