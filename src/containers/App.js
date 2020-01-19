@@ -64,7 +64,7 @@ class App extends Component {
       from: account,
     }).then((res) => {
       const projectInfo = res.events.ProjectStarted.returnValues;
-      projectInfo.currentAmount = 0;
+      projectInfo.totalRaised = 0;
       projectInfo.contract = crowdfundProject(projectInfo.contractAddress);
     });
   }
@@ -78,7 +78,6 @@ class App extends Component {
       const newTotal = parseInt(res.events.newPledge.returnValues.total_raised, 10);
       project.totalRaised = newTotal;
       projects[project.project_ID] = project;
-      this.setState({ projectData: projects });
     });
   }
 
