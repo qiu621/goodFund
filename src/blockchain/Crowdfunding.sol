@@ -199,11 +199,11 @@ contract Project {
                     project_status = 5;
                 }
             }
-        } else if (project_status = 2) {
+        } else if (project_status == 2) {
             if (now > project_m2 && now < project_m2 + (7*1 days)) {
                 project_status = 3;
             }
-        } else if (project_status = 3) {
+        } else if (project_status == 3) {
             if (now > project_m2 + (7*1 days)) {
                 if (yesVotes > noVotes) {
                     project_status = 4;
