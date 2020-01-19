@@ -50,7 +50,7 @@ class ProjectSummary extends React.Component {
           <span style={{fontSize: "20px"}}>{curr} eth</span><span style={{fontSize: "10px", textAlign: 'marginBottom'}}> of {goal} eth goal</span>
         </ListGroup.Item>
         <ListGroup.Item style={listGroupStyle}>
-          <span style={{fontSize: "20px"}}>{daysLeft}</span><span style={{fontSize: "10px", textAlign: 'marginBottom'}}> days left</span>
+          <span style={{fontSize: "20px"}}>{300}</span><span style={{fontSize: "10px", textAlign: 'marginBottom'}}> days left</span>
         </ListGroup.Item>
         <ListGroup.Item style={listGroupStyle}>
           <span style={{fontSize: "20px"}}>89</span><span style={{fontSize: "10px"}}> backers</span>
