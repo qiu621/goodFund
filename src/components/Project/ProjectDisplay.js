@@ -18,9 +18,12 @@ const img = {
 };
 
 const fundingStatus = {
-  "0": "In Progress",
-  "1": "Expired",
-  "2": "Goal Reached"
+  "0": "Funding In Progress",
+  "1": "First Milestone Voting Period",
+  "2": "First Milestone Accomplished",
+  "3": "Second Milestone Voting Period",
+  "4": "Goal Reached",
+  "5": "Expired"
 }
 
 const getStatus = (status) => {

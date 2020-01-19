@@ -11,7 +11,9 @@ class ProjectForm extends React.Component {
         project_title: 'HappyBird',
         project_description: 'Fly away, fly away',
         project_deadline: 'Right now',
-        project_goal: '$0.001'
+        project_goal: '$0.001',
+        project_m1: '30',
+        project_m2: '60'
       };
       this.startProject = props.startProject;
 
@@ -122,6 +124,34 @@ class ProjectForm extends React.Component {
             <input
                type="text"
                name="project_deadline"
+               placeholder=""
+               onChange={this.handleFormChange}
+            />
+          </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="project_m1">
+            <Form.Label column sm="2">
+              Milestone 1
+            </Form.Label>
+            <Col sm="11">
+            <input
+               type="text"
+               name="project_m1"
+               placeholder=""
+               onChange={this.handleFormChange}
+            />
+          </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="project_m2">
+            <Form.Label column sm="2">
+              Milestone 2
+            </Form.Label>
+            <Col sm="11">
+            <input
+               type="text"
+               name="project_m2"
                placeholder=""
                onChange={this.handleFormChange}
             />
