@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './img/logo512.png';
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import {
     Link
   } from "react-router-dom";
@@ -22,12 +23,10 @@ const ProjectDisplay = ( projectInfo ) => {
 			<div class="card">
 				<img class="card-img-top" src={logo} alt="Card image cap" style={img}/>
 				<div class="card-body">
-					<h5 class="card-title">Eagle Water.</h5>
-					<p class="card-text">Save eagles in the environment while drinking water.</p>
+					<Link to={"/project/" + project.project_ID}><h5 class="card-title">{project.project_title}</h5></Link>
+					<p class="card-text">{project.project_description}</p>
+          <ProgressBar variant="success" now={40} />
 				</div>
-				<div class="card-footer">
-          <Link to={"/project/" + project.project_ID}>This is a Project called {project.project_title}!!</Link>
-			</div>
 		</div>
   </div>
   );
