@@ -32,7 +32,6 @@ class App extends Component {
   componentDidMount() {
     web3.eth.getAccounts().then((accounts) => {
       this.setState({ account: accounts[0] });
-      // this.startProject();
       this.getProjects();
     });
   }
@@ -67,10 +66,10 @@ class App extends Component {
     });
   }
 
-  fundProject(index, amount) {
+  fundProject(index, amount, account) {
     const projectContract = this.state.projectData[index].contract;
     projectContract.methods.pledge(amount).send({
-      from: this.state.account,
+      from: account,
       value: web3.utils.toWei(amount, 'ether'),
     }).then((res) => {
       const newTotal = parseInt(res.events.newPledge.returnValues.total_raised, 10);
@@ -97,7 +96,7 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <Header />
-              <ProjectList projects={this.state.projectData} />
+              <ProjectList projects={this.state.projectData} fundProject={this.fundProject} account={this.state.account} />
             </header>
           </div>
           </Route>
