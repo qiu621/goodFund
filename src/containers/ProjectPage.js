@@ -3,7 +3,7 @@ import { Container, Button, Jumbotron, Form, Row, Col, ProgressBar, ListGroup } 
 import web3 from '../blockchain/web3';
 import Nav from '../components/Nav/Nav.js';
 import logo from './img/logo512.png';
-import love from './img/love.jpeg';
+// import love from './img/love.jpeg';
 
 const img = {
     width: "50%",
@@ -57,6 +57,7 @@ class ProjectPage extends React.Component {
         let project = this.props.project;
         let curr = web3.utils.fromWei(project.project_total_raised);
         let goal = web3.utils.fromWei(project.project_goal);
+        let percentComplete = curr / goal;
         let daysLeft = project.project_deadline;
 
         return (
@@ -67,7 +68,7 @@ class ProjectPage extends React.Component {
                 <p>by {this.props.project.project_creator_name}</p>
                 <Container>
                   <Row>
-                    <Col sm={8}><img src={love} alt="True Love" style={img}/></Col>
+                    <Col sm={8}><img src={logo} alt="True Love" style={img}/></Col>
                     <Col sm={4}>
                       <ProgressBar now={curr / goal * 100} />
                       <ListGroup variant="flush">
@@ -85,22 +86,26 @@ class ProjectPage extends React.Component {
                       </ListGroup>
                     </Col>
                   </Row>
-                  </Container>
-                <h1>{ "TOTAL RAISED " + web3.utils.fromWei(this.props.project.project_total_raised) + " ETH" }</h1>
-                <ProgressBar now={this.props.project.project_total_raised / this.props.project.project} />
-                <Form>
-                  <Col sm="10">
-                  <input
-                     type="text"
-                     name="amount"
-                     placeholder="Amount"
-                     onChange={this.handleFormChange}
-                  />
-                  </Col>
-                </Form>
-                <Button onClick={this.handleButtonSubmit}>
-                    FUND!
-                </Button>
+                </Container>
+                <div>
+                    <h1>{ "TOTAL RAISED " + web3.utils.fromWei(this.props.project.project_total_raised) + " ETH" }</h1>
+                    <ProgressBar variant="success" now={ percentComplete } />
+                    <Form>
+                        <Col sm="12">
+                        <input
+                            type="text"
+                            name="amount"
+                            placeholder="Amount"
+                            onChange={this.handleFormChange}
+                        />
+                        </Col>
+                    </Form>
+                    <div>==</div>
+                    <Button onClick={this.handleButtonSubmit}>
+                        FUND!
+                    </Button>
+                </div>
+                
             </Jumbotron>
             </React.Fragment>
 
